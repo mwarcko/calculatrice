@@ -3,15 +3,22 @@ package calc;
 import java.util.Scanner;
 
 public class Calculatrice {
-
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		String aCalculer = "firstthing";
 		Scanner sc = new Scanner(System.in);
-		System.out.println("donnez un calcul : ");
-		String calcul = sc.nextLine();
+		do {
+			System.out.println("donnez un calcul (tapez \"exit\" pour sortir): ");
+			aCalculer = sc.nextLine();
+			if (!aCalculer.equals("exit")) {
+				System.out.println(calculatrice(aCalculer));
+			}
+		} while (!aCalculer.equals("exit"));
+		sc.close();
+	}
+
+	public static String calculatrice(String calcul) {
 		String regSign = "[*\\-+/]";
 		String regNum = "[0-9]+(\\.[0-9])?";
-		sc.close();
 		calcul = calcul.replaceAll("[ ]", "");
 		calcul = calcul.replaceAll("[,]", ".");
 		String[] splittedNum = splitter(calcul, regSign);
@@ -35,25 +42,16 @@ public class Calculatrice {
 				System.out.println("Signe non reconnu");
 				break;
 			}
-
 		}
-		System.out.println("le résultat du calcul est de : " + firstNumber);
+		return "le résultat du calcul est de : " + firstNumber;
 	}
-
-	// Reconnaissance des signes
 
 	public static Double addition(Double a, Double b) {
 		return a + b;
 	}
 
 	public static Double division(Double a, Double b) {
-		try {
-			return a / b;
-
-		} catch (ArithmeticException e) {
-			System.out.println("impossible de diviser par 0");
-			return null;
-		}
+		return a / b;
 	}
 
 	public static Double multiplication(Double a, Double b) {
