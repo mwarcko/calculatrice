@@ -26,19 +26,19 @@ public class Calculatrice {
 		// Reconnaissance des signes
 	}
 
-	public Integer addition(Integer a, Integer b) {
+	public Double addition(Double a, Double b) {
 		return a + b;
 	}
 
-	public Integer division(Integer a, Integer b) {
+	public Double division(Double a, Double b) {
 		return a / b;
 	}
 
-	public Integer multiplication(Integer a, Integer b) {
+	public Double multiplication(Double a, Double b) {
 		return a * b;
 	}
 
-	public Integer soustraction(Integer a, Integer b) {
+	public Double soustraction(Double a, Double b) {
 		return a - b;
 	}
 
