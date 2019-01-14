@@ -10,9 +10,10 @@ public class Calculatrice {
 		System.out.println("donnez un calcul : ");
 		String calcul = sc.nextLine();
 		String regSign = "[*\\-+/]";
-		String regNum = "[0-9]+";
+		String regNum = "[0-9]+(\\.[0-9])?";
 		sc.close();
 		calcul = calcul.replaceAll("[ ]", "");
+		calcul = calcul.replaceAll("[,]", ".");
 		String[] splittedNum = splitter(calcul, regSign);
 		String[] splittedSign = splitter(calcul, regNum);
 		Double firstNumber = Double.parseDouble(splittedNum[0]);
