@@ -9,13 +9,12 @@ public class Calculatrice {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("donnez un calcul : ");
 		String calcul = sc.nextLine();
-		String regSign = "[*-+/]";
+		String regSign = "[*\\-+/]";
 		String regNum = "[0-9]+";
 		sc.close();
 		calcul = calcul.replaceAll("[ ]", "");
 		String[] splittedNum = splitter(calcul, regSign);
 		String[] splittedSign = splitter(calcul, regNum);
-
 		Double firstNumber = Double.parseDouble(splittedNum[0]);
 		for (int i = 1; i < splittedNum.length; i++) {
 			switch (splittedSign[i]) {
@@ -61,7 +60,8 @@ public class Calculatrice {
 	}
 
 	public static Double soustraction(Double a, Double b) {
-		return a - b;
+		Double c = a - b;
+		return c;
 	}
 
 	public static String[] splitter(String toSplit, String reg) {
