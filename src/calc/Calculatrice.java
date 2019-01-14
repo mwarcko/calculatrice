@@ -9,36 +9,58 @@ public class Calculatrice {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("donnez un calcul : ");
 		String calcul = sc.nextLine();
-		String regSign = "[*\\-+\\/]";
+		String regSign = "[*-+/]";
 		String regNum = "[0-9]+";
-
+		sc.close();
+		calcul = calcul.replaceAll("[ ]", "");
 		String[] splittedNum = splitter(calcul, regSign);
 		String[] splittedSign = splitter(calcul, regNum);
 
-		for (int i = 0; i < splittedNum.length; i++) {
-			System.out.println("numéro [" + i + "]" + splittedNum[i]);
-		}
+		Double firstNumber = Double.parseDouble(splittedNum[0]);
+		for (int i = 1; i < splittedNum.length; i++) {
+			switch (splittedSign[i]) {
+			case "+":
+				firstNumber = addition(firstNumber, Double.parseDouble(splittedNum[i]));
+				break;
+			case "-":
+				firstNumber = soustraction(firstNumber, Double.parseDouble(splittedNum[i]));
+				break;
+			case "*":
+				firstNumber = multiplication(firstNumber, Double.parseDouble(splittedNum[i]));
+				break;
+			case "/":
+				firstNumber = division(firstNumber, Double.parseDouble(splittedNum[i]));
+				break;
+			default:
+				System.out.println("Signe non reconnu");
+				break;
+			}
 
-		for (int i = 0; i < splittedSign.length; i++) {
-			System.out.println("signe: [" + i + "]" + splittedSign[i]);
 		}
-
-		// Reconnaissance des signes
+		System.out.println("le résultat du calcul est de : " + firstNumber);
 	}
 
-	public Double addition(Double a, Double b) {
+	// Reconnaissance des signes
+
+	public static Double addition(Double a, Double b) {
 		return a + b;
 	}
 
-	public Double division(Double a, Double b) {
-		return a / b;
+	public static Double division(Double a, Double b) {
+		try {
+			return a / b;
+
+		} catch (ArithmeticException e) {
+			System.out.println("impossible de diviser par 0");
+			return null;
+		}
 	}
 
-	public Double multiplication(Double a, Double b) {
+	public static Double multiplication(Double a, Double b) {
 		return a * b;
 	}
 
-	public Double soustraction(Double a, Double b) {
+	public static Double soustraction(Double a, Double b) {
 		return a - b;
 	}
 
